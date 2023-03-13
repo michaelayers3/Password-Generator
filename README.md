@@ -4,7 +4,7 @@
 
 This repo contains a password generator. I was given the HTML, CSS, and JavaScript files. I was tasked with creating a password generator that would meet certain criteria, including character length and type of characters (all within window prompts), and then produce a password that met the criteria. If this criteria wasn't met, there is a window that alerts the user that the criteria wasn't met. 
 
-![screenshot](./assets/photos/screenshot.png)
+![screenshot](./Assets/photos/screenshot.png)
 
 Here is the link to the page:
 https://michaelayers3.github.io/Password-Generator/
