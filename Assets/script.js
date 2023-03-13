@@ -8,62 +8,52 @@ var optionsSpecial= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_",
 
 
 function generatePassword(){
- var response = prompt("How many characters?");
-  if (response < 8 || response > 128) {
+  var chosenChars = []
+ var pwLength = prompt("How many characters?");
+  if (pwLength < 8 || pwLength > 128 || isNaN(pwLength)) {
     alert("Please enter a number between 8 and 128");
-  return;
-  }
-  else {
-    var Length = parseInt(response);
-    console.log(Length);
+  return "";
   }
  
   var lowerCase = confirm("Do you want lowercase letters?");
     if(lowerCase === true){
-      for(var i = 0; i < Length; i++){
-      var index= Math.floor(Math.random() * optionsLower.length);
-      var randomLower= optionsLower[index];
-      console.log(randomLower);
+      chosenChars.push(...optionsLower);
+    
   }
-   } else{
-    var randomLower= ""}
+  
 
   var upperCase = confirm("Do you want uppercase letters?");
     if(upperCase === true){
-      for(var i = 0; i < Length; i++){
-      var index= Math.floor(Math.random() * optionsUpper.length);
-      var randomUpper= (optionsUpper[index]);
-      console.log(randomUpper);
-  }
-  } else{
-    var randomUpper= "";}
+     chosenChars.push(...optionsUpper);
+    }
 
   var numbers = confirm("Do you want numbers?");
     if(numbers === true){
-      for(var i = 0; i < Length; i++){
-      var index= Math.floor(Math.random() * optionsNumbers.length);
-      var randomNumbers= optionsNumbers[index];
-      console.log(randomNumbers);
-      }} else{
-        var randomNumbers= "";}
+     chosenChars.push(...optionsNumbers);
+    }
+
   var special = confirm("Do you want special characters?");
     if(special === true){
-      for(var i = 0; i < Length; i++){
-      var index= Math.floor(Math.random() * optionsSpecial.length);
-      var randomSpecial= optionsSpecial[index];
-      console.log(randomSpecial);
-    }} else{
-      var randomSpecial= "";}
-
-  if (lowerCase === false && upperCase === false && numbers === false && special === false) {
-    alert("Please select at least one character type");
-  }
-var password = randomLower+ randomUpper+ randomNumbers+ randomSpecial;
-    for(var i = Length; i < Length; i++){
-    //   var index= Math.floor(Math.random() * together.length);
-    //   var randomTogether= together[index];
-      console.log(password);
+      chosenChars.push(...optionsSpecial);
+    }
+    console.log(chosenChars);
     
+  
+
+  if (lowerCase + upperCase + numbers + special < 1) {
+    alert("Please select at least one character type");
+    return "";
+  }
+
+  var newPassword = "";
+    for(var i = 0; i < pwLength; i++){
+      var index= Math.floor(Math.random() * chosenChars.length);
+      var randomChar= chosenChars[index];
+      console.log(randomChar);
+      newPassword += randomChar;
+    }
+    console.log(newPassword);
+    return newPassword;
 };
 
 
@@ -75,8 +65,5 @@ function writePassword() {
   passwordText.value = password;
 
 }
-writePassword();
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-  
